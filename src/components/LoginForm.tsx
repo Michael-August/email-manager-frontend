@@ -18,7 +18,7 @@ const LoginForm = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:4000/api/login', {
+            const response = await axios.post('https://email-manager-baackend.onrender.com/api/login', {
                 email,
                 password,
             });
