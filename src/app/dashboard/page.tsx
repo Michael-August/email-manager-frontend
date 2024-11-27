@@ -27,7 +27,7 @@ const Dashboard = () => {
 
     const handleEditing = async (employeeId: string) => {
         try {
-            const response = await axios.get(`https://email-manager-baackend.onrender.com/api/employees/${employeeId}`, {
+            const response = await axios.get(`http://localhost:4000/api/employees/${employeeId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -44,7 +44,7 @@ const Dashboard = () => {
     const handleDelete = async (employeeId: string) => {
         setIsDeleting(true);
         try {
-            await axios.delete(`https://email-manager-baackend.onrender.com/api/employees/${employeeId}`, {
+            await axios.delete(`http://localhost:4000/api/employees/${employeeId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -62,7 +62,7 @@ const Dashboard = () => {
 
     const fetchEmployees = async (token: any) => {
         try {
-            const response = await axios.get('https://email-manager-baackend.onrender.com/api/employees', {
+            const response = await axios.get('http://localhost:4000/api/employees', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
