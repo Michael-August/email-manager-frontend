@@ -1,16 +1,17 @@
 "use client"
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react'
 
 const NavBar = () => {
     const router = useRouter()
+    const pathname = usePathname()
     return (
-        <div className='py-5 px-5 flex items-center justify-between shadow-md'>
+        <div className='bg-gray-800 text-white py-5 px-5 flex items-center justify-between'>
             <div className="logo">
-                <span className='text-base font-semibold'>SteveCapitals</span>
+                <span className='text-xl font-semibold'>SteveCapitals</span>
             </div>
-            <span onClick={() => { localStorage.removeItem("token"); router.push("/")}} className='hover:underline text-sm cursor-pointer'>sign out</span>
+            {pathname === "/dashboard" && <span onClick={() => { localStorage.removeItem("token"); router.push("/")}} className='hover:underline text-sm cursor-pointer'>sign out</span>}
         </div>
     )
 }
