@@ -5,15 +5,17 @@ import { toast } from 'react-toastify';
 const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {setIsOpen: React.Dispatch<React.SetStateAction<boolean>>, employeeData: any, setEmployeeData: any, fetchEmployees: any}) => {
     const [formData, setFormData] = useState({
         fullName: '',
-        email: '',
+        employeeId: '',
         resignationDate: '',
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false)
 
+    const [employees, setEmployees] = useState([])
+
     const handleClose = () => {
         setEmployeeData(null)
-        setFormData({ fullName: "", email: "", resignationDate: "" })
+        setFormData({ fullName: "", employeeId: "", resignationDate: "" })
         setIsOpen(false);
     };
 
@@ -46,7 +48,7 @@ const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {
             setIsOpen(false)
             toast.success(response.data.message);
             fetchEmployees(token)
-            setFormData({ fullName: "", email: "", resignationDate: "" })
+            setFormData({ fullName: "", employeeId: "", resignationDate: "" })
             setEmployeeData(null)
         } catch (error: any) {
             console.log(error);
@@ -62,6 +64,27 @@ const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {
             setFormData(employeeData)
         }
     }, [employeeData])
+
+    useEffect(() => {
+        const fetchEmployees = async () => {
+            const token = localStorage.getItem("token")
+            try {
+                const allEmployees = await axios({
+                    method: 'get',
+                    url: 'http://localhost:4000/api/allEmployee',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                setEmployees(allEmployees.data)
+            } catch (error) {
+                
+            }
+        }
+
+        fetchEmployees()
+    }, [])
 
     return (
         <div className='fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex justify-center items-center'>
@@ -95,7 +118,13 @@ const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {
                         >
                             Email
                         </label>
-                        <input
+                        <select className='border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' value={formData.employeeId} onChange={handleChange} name="employeeId" id="">
+                            <option>--select employee email--</option>
+                            {employees.map((employee: any) => (
+                                <option key={employee._id} value={employee._id}>{ employee?.email }</option>
+                            ))}
+                        </select>
+                        {/* <input
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             id="email"
                             type="email"
@@ -103,7 +132,7 @@ const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                        />
+                        /> */}
                     </div>
                     <div className="flex flex-col gap-2">
                         <label

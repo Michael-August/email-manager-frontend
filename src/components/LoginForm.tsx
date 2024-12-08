@@ -16,7 +16,7 @@ const LoginForm = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-
+        console.log("Submitting")
         try {
             const response = await axios.post('http://localhost:4000/api/login', {
                 email,
@@ -26,14 +26,14 @@ const LoginForm = () => {
             // Handle success
             if (response.status === 200) {
                 toast.success('Login successful!');
-                console.log('Response:', response.data);
+                console.log('Response:', response?.data);
                 localStorage.setItem("token", response?.data.token)
                 localStorage.setItem("user", JSON.stringify(response?.data.userDetails))
 
-                router.push('/dashboard')
+                router.push('/offboard')
             }
         } catch (error: any) {
-            toast.error(error.response.data.message);
+            toast.error(error.message);
             console.log('Error:', error.response?.data || error.message);
         } finally {
             setLoading(false);
@@ -41,7 +41,7 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="w-1/2 flex flex-col gap-5 p-6 mt-10 rounded-lg border">
+        <div className="w-full bg-white flex flex-col gap-5 p-6 rounded-lg border">
             <span className="text-lg font-semibold">Log in</span>
 
             <form
