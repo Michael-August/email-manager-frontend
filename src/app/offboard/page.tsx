@@ -30,7 +30,7 @@ const OffBoarding = () => {
 
     const handleEditing = async (employeeId: string) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/employees/${employeeId}`, {
+            const response = await axios.get(`https://email-manager-baackend.onrender.com/api/employees/${employeeId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -46,7 +46,7 @@ const OffBoarding = () => {
 
     const handleView = async (employeeId: string) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/allEmployee/${employeeId}/properties`, {
+            const response = await axios.get(`https://email-manager-baackend.onrender.com/api/allEmployee/${employeeId}/properties`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -63,7 +63,7 @@ const OffBoarding = () => {
     const handlePropertyStatus = async (propertyId: string, employeeId: string) => {
         try {
 
-            const response = await axios.put('http://localhost:4000/api/allEmployee/return',
+            const response = await axios.put('https://email-manager-baackend.onrender.com/api/allEmployee/return',
                 {
                     propertyId,
                 },
@@ -76,7 +76,7 @@ const OffBoarding = () => {
 
             toast.success('Item updated')
             // Optionally, update the UI or fetch updated data after success
-            const fetchUpdated = await axios.get(`http://localhost:4000/api/allEmployee/${employeeId}/properties`, {
+            const fetchUpdated = await axios.get(`https://email-manager-baackend.onrender.com/api/allEmployee/${employeeId}/properties`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -92,7 +92,7 @@ const OffBoarding = () => {
     const handleDelete = async (employeeId: string) => {
         setIsDeleting(true);
         try {
-            await axios.delete(`http://localhost:4000/api/employees/${employeeId}`, {
+            await axios.delete(`https://email-manager-baackend.onrender.com/api/employees/${employeeId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -110,7 +110,7 @@ const OffBoarding = () => {
 
     const fetchEmployees = async (token: any) => {
         try {
-            const response = await axios.get('http://localhost:4000/api/employees', {
+            const response = await axios.get('https://email-manager-baackend.onrender.com/api/employees', {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

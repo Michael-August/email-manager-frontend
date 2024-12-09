@@ -32,7 +32,7 @@ const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {
         setIsSubmitting(true);
 
         try {
-            const apiToCall = employeeData ? `http://localhost:4000/api/employees/${employeeData._id}` : 'http://localhost:4000/api/employees';
+            const apiToCall = employeeData ? `https://email-manager-baackend.onrender.com/api/employees/${employeeData._id}` : 'https://email-manager-baackend.onrender.com/api/employees';
             const methodToUse = employeeData ? 'put' : 'post';
 
             const response = await axios({
@@ -71,7 +71,7 @@ const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {
             try {
                 const allEmployees = await axios({
                     method: 'get',
-                    url: 'http://localhost:4000/api/allEmployee',
+                    url: 'https://email-manager-baackend.onrender.com/api/allEmployee',
                     headers: {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`
