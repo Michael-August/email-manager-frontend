@@ -1,11 +1,8 @@
 "use client"
 
-import type { Metadata } from "next";
 import "./globals.css";
-import NavBar from "../components/NavBar";
 
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-toastify";
 import AuthLayout from "./layouts/auth";
 import MainRootLayout from "./layouts/root";
 import { usePathname } from "next/navigation";

@@ -1,18 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 const SideBar = () => {
     const pathname = usePathname();
 
     // Sidebar navigation items
     const navItems = [
-        { name: 'Dashboard', path: '/dashboard' },
-        { name: 'OnBoarding', path: '' },
-        { name: 'Employees', path: '' },
-        { name: 'OffBoarding', path: '/offboard' },
-        { name: 'Reports', path: '' },
-        { name: 'Settings', path: '' },
+        {id: 1, name: 'Dashboard', path: '/dashboard' },
+        {id: 2, name: 'OnBoarding', path: '' },
+        {id: 3, name: 'Employees', path: '' },
+        {id: 4, name: 'OffBoarding', path: '/offboard' },
+        {id: 5, name: 'Reports', path: '' },
+        {id: 6, name: 'Settings', path: '' },
     ];
 
     return (
@@ -20,7 +20,7 @@ const SideBar = () => {
             <h1 className="text-xl font-bold mb-6">HR Dashboard</h1>
             <nav className="space-y-4">
                 {navItems.map((item) => (
-                    <Link key={item.path} href={item.path}>
+                    <Link key={item.id} href={item.path}>
                         <span
                             className={`block px-4 py-2 rounded-md 
                             ${

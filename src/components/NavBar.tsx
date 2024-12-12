@@ -11,7 +11,7 @@ const NavBar = () => {
             <div className="logo">
                 <span className='text-xl font-semibold'>SteveCapitals</span>
             </div>
-            {pathname === "/dashboard" && <span onClick={() => { localStorage.removeItem("token"); router.push("/")}} className='hover:underline text-sm cursor-pointer'>sign out</span>}
+            {(pathname === "/dashboard" || pathname === "/offboard") && <span onClick={() => { localStorage.removeItem("token"); router.push("/")}} className='hover:underline text-sm cursor-pointer'>sign out</span>}
         </div>
     )
 }
