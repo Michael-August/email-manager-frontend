@@ -1,7 +1,6 @@
 "use client"
 
 import Image from 'next/image'
-import { MdEmail } from 'react-icons/md'
 
 import HR from '../../../public/hr.jpg'
 import { ToastContainer } from 'react-toastify'

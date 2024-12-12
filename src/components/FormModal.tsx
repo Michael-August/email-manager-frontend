@@ -79,7 +79,7 @@ const FormModal = ({setIsOpen, employeeData, setEmployeeData, fetchEmployees}: {
                 })
                 setEmployees(allEmployees.data)
             } catch (error) {
-                
+                console.log(error)
             }
         }
 
