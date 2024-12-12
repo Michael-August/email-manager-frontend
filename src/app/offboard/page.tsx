@@ -3,6 +3,7 @@
 import FormModal from '../../components/FormModal'
 import axios from 'axios'
 import moment from 'moment'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { FaEllipsisV } from 'react-icons/fa'
 import { toast } from 'react-toastify'
@@ -23,6 +24,7 @@ const OffBoarding = () => {
     const [employeeToDelete, setEmployeetoDelete] = useState('')
 
     const [token, setToken] = useState<string | null>(null)
+    const router = useRouter()
 
     const toggleActionsCard = (index: number) => {
         setOpenActions(openActions === index ? null : index)
@@ -125,9 +127,13 @@ const OffBoarding = () => {
 
     useEffect(() => {
         const storedToken = localStorage.getItem("token")
-        console.log(token)
-        setToken(storedToken)
-        fetchEmployees(storedToken)
+
+        if (!storedToken) {
+            router.push('/');
+        } else {
+            setToken(storedToken)
+            fetchEmployees(storedToken)
+        }
     }, [])
 
     return (

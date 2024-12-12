@@ -1,12 +1,24 @@
-import React from 'react'
+"use client"
+
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react'
 
 const Dashboard = () => {
+    const router = useRouter()
+
     const stats = [
         { title: 'Total Employees', value: 128 },
         { title: 'Active Properties', value: 54 },
         { title: 'Pending Requests', value: 12 },
         { title: 'Departments', value: 8 },
     ];
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            router.push('/');
+        }
+    }, []);
     return (
         <div className='flex-1 p-6 overflow-y-auto'>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
